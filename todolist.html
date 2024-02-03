@@ -1,0 +1,34 @@
+<html>
+<head>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        li.completed {
+            text-decoration: line-through;
+        }
+    </style>
+</head>
+<body>
+    <input id="itemField"></input>
+    <p>
+    <ul id="list">
+    </ul>
+    <script>
+        $(document).ready(function() {
+            function keyPressHandler(e) {
+                if (e.keyCode == 13) {
+                    var itemText = $('#itemField').val().trim();
+                    if(itemText) {
+                        $('#list').append('<li>' + itemText + '</li>');
+                        $('#itemField').val('');
+                    }
+                }
+            }
+            $('#itemField').keyup(keyPressHandler);
+
+            $('#list').on('click', 'li', function() {
+                $(this).toggleClass('completed');
+            });
+        });
+    </script>
+</body>
+</html>
